@@ -1,9 +1,13 @@
 <template name="cardItem">
   <div class="card  col-xs-12 col-md-4">
     <div class="card-content">
-      <h3><a href="{{name}}">{{name}}</a></h3>
-      <img src="{{profile_pic}}" />
-      <p> {{description}}</p>
+      <h3><a href="{{pathFor 'cardPage'}}">{{card_name}}</a></h3>
+      <img src="{{card_profile_pic}}" />
+      <p> {{card_description}}</p>
+      <p>
+        submitted by {{author}}
+        {{#if ownCard}}<a href="{{pathFor 'cardEdit'}}">Edit</a>{{/if}}
+      </p>
     </div>
   </div>
 </template>
