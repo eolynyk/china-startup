@@ -1,5 +1,5 @@
 Template.cardsList.helpers({
   cards: function() {
-    return Cards.find();
+    return Cards.find({}, {sort: {submitted: -1}});
   }
 });
