@@ -6,10 +6,10 @@ Meteor.publish('users', function() {
   return Users.find();
 });
 
-Meteor.publish("chats", function () {
-  return Chats.find();
-});
-
-Meteor.publish("messages", function () {
-  return Messages.find({}, {sort: {submitted: -1}});
-});
+//Meteor.publish("chats", function () {
+//  return Chats.find();
+//});
+//
+//Meteor.publish("messages", function () {
+//  return Messages.find({}, {sort: {submitted: -1}});
+//});
