@@ -20,4 +20,39 @@ if (Cards.find().count() === 0) {
     author: 'some rando',
     submitted: new Date()
   });
-}
+};
+if (Chats.find().count() === 0) {
+  var now = new Date().getTime();
+  // create two users
+  var tomId = Meteor.users.insert({
+    profile: { name: 'Tom Coleman' }
+  });
+  var tom = Meteor.users.findOne(tomId);
+  var sachaId = Meteor.users.insert({
+    profile: { name: 'Sacha Greif' }
+  });
+  var sacha = Meteor.users.findOne(sachaId);
+  var telescopeId = Chats.insert({
+    name: sacha.profile.name,
+    submitted: new Date(now - 7 * 3600 * 1000)
+  });
+  Messages.insert({
+    chatId: telescopeId,
+    userId: tom._id,
+    user: tom.profile.name,
+    submitted: new Date(now - 5 * 3600 * 1000),
+    msg: 'Interesting project Sacha, can I get involved?'
+  });
+  Messages.insert({
+    chatId: telescopeId,
+    userId: sacha._id,
+    user: sacha.profile.name,
+    submitted: new Date(now - 3 * 3600 * 1000),
+    msg: 'You sure can Tom!'
+  });
+  Chats.insert({
+    userId: tom._id,
+    name: tom.profile.name,
+    submitted: new Date(now - 10 * 3600 * 1000)
+  });
+};
