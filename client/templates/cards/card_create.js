@@ -3,7 +3,10 @@ Template.cardCreate.onCreated(function() {
 });
 
 Template.cardCreate.helpers({
-  card_username: function() {return Meteor.user().username},
+  name: function() {
+    var user = Meteor.users.findOne();
+    return user.profile.name
+  },
   errorMessage: function(field) {
     return Session.get('cardCreateErrors')[field];
   },

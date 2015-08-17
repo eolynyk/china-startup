@@ -1,10 +1,10 @@
 <template name="cardCreate">
   <form class="main form page">
-    <label name="card_username" value="card_username">Almost there {{card_username}}! We just need a few details from you...</label>
+    <label name="card_username" value="card_username">Hi there {{name}}! To start, create a new pitch card</label>
     <div class="form-group {{errorClass 'card_name'}}">
-      <label class="control-label" for="card_name">Full Name</label>
+      <label class="control-label" for="card_name">Pitch Name</label>
       <div class="controls">
-        <input name="card_name" id="card_name" type="text" value="" placeholder="John Doe" class="form-control"/>
+        <input name="card_name" id="card_name" type="text" value="" placeholder="Grand Idea" class="form-control"/>
         <span class="help-block">{{errorMessage 'card_name'}}</span>
       </div>
     </div>
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="form-group {{errorClass 'card_description'}}">
-      <label class="control-label" for="card_description">My Bio</label>
+      <label class="control-label" for="card_description">Brief Description</label>
       <div class="controls">
         <input name="card_description" id="card_description" type="text" value="" placeholder="Interested in working on a startup to discover forms of baconfish" class="form-control"/>
         <span class="help-block">{{errorMessage 'card_description'}}</span>

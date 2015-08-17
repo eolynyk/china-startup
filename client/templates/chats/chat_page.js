@@ -1,7 +1,13 @@
 Template.chatPage.helpers({
   messages: function() {
     return Messages.find({chatId: this._id});
-  }
+  },
+  //skypeId: function() {
+  //  var skypeId = "echo123";
+  //  //var user = Meteor.user();
+  //  //var skypeId =  user.skypeId;
+  //  return skypeId;
+  //}
 });
 
 Template.messageSubmit.events({
@@ -24,5 +30,5 @@ Template.messageSubmit.events({
         $msg.val('');
       }
     });
-  }
+  },
 });
