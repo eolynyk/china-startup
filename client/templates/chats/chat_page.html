@@ -1,6 +1,6 @@
 <template name="chatPage">
   <div class="card-page page">
-    <h3>Chat with {{name}}</h3>
+    {{> chatItem}}
     <ul class="messages">
       {{#each messages}}
         {{> messageItem}}
@@ -14,7 +14,7 @@
 <template name="messageItem">
   <li>
     <h4>
-      <span class="author">{{user}}</span>
+      <span class="author">{{name}}</span>
       <span class="date">on {{submitted}}</span>
     </h4>
     <p>{{msg}}</p>

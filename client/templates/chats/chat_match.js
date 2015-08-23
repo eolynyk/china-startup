@@ -15,26 +15,26 @@ Template.chatMatch.events({
     e.preventDefault();
 
     console.log("click worked");
+    var initiator = Meteor.user();
+    var invitee = Cards.findOne(this._id);
 
-    //var card = {
-    //  card_name: $(e.target).find('[name=card_name]').val(),
-    //  card_profile_pic: $(e.target).find('[name=card_profile_pic]').val(),
-    //  card_description: $(e.target).find('[name=card_description]').val(),
-    //};
+    var chat = {
+      initiatorId: initiator._id,
+      initiator: initiator.profile.name,
+      initiatorSkype: initiator.profile.SkypeID,
+      inviteeId: invitee.userId,
+      invitee: invitee.author,
+      inviteeSkype: invitee.SkypeId,
+      accepted: true,
+      cardId: invitee._id,
+    };
+    console.log(chat);
     //
     // var errors = validateCard(card);
     // if (errors.card_name || errors.card_profile_pic || errors.card_description)
     //   return Session.set('cardCreateErrors', errors);
     //
-    Meteor.call('chatInsert', chat, function(error, result) {
-      if (error)
-        return throwError(error.reason);
-
-      ////show this result but route anyway
-      //if (result.cardExists)
-      //  throwError('This card has already been posted');
-
-      Router.go('chatPage', {_id: result._id});
-    });
+    chat._id = Chats.insert(chat);
+    Router.go('chatPage', chat);
   }
 });

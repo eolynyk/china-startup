@@ -2,6 +2,19 @@ Template.chatPage.helpers({
   messages: function() {
     return Messages.find({chatId: this._id});
   },
+  //chatId: function() {
+  //  console.log(this._id);
+  //  //var chatId = Chats.findOne({_id: this._id}).chatId.valueOf();
+  //  //return chatId;
+  //}
+  //p2: function() {
+  //  var chat = Chats.findOne({_id: this._id});
+  //  var p2Id = Cards.find({userId: chat.participants.p2.userId});
+  //  console.log(this.participants.p2.userId);
+    //var card = Cards.find({userId: p2Id })
+    //console.log(card);
+  //  return p2Id.author
+  //}
   //skypeId: function() {
   //  var skypeId = "echo123";
   //  //var user = Meteor.user();
