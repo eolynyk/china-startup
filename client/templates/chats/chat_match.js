@@ -1,12 +1,14 @@
 Template.chatMatch.helpers({
   nextCard: function() {
     var currentCard = Cards.findOne(this._id).submitted;
-    return Cards.findOne({submitted:{$gt:currentCard}},{sort:{submitted:1}})._id;
-    //return currentCard;
+    var currentCardType = Cards.findOne(this._id).userType;
+    //console.log(currentCardType);
+    return Cards.findOne({$and: [{submitted:{$gt:currentCard}}, {userType: currentCardType}]},{sort:{submitted:1}})._id;
   },
   prevCard: function() {
     var currentCard = Cards.findOne(this._id).submitted;
-    return Cards.findOne({submitted:{$lt:currentCard}},{sort:{submitted:-1}})._id;
+    var currentCardType = Cards.findOne(this._id).userType;
+    return Cards.findOne({$and: [{submitted:{$lt:currentCard}}, {userType: currentCardType}]},{sort:{submitted: -1}})._id;
   }
 });
 
