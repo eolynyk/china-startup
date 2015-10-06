@@ -11,8 +11,11 @@ img {
   width: 100%;
 }
 body {
-  background: #eee;
   color: #666666; 
+}
+
+ul {
+  list-style-type: none;
 }
 
 .page {
@@ -164,4 +167,19 @@ body {
   clear: both;
   margin-bottom: 5px;
   pointer-events: auto;
+}
+
+.msg {
+  width: 40%;
+  padding: 10px;
+  margin: 10px;
+}
+.me {
+  background-color: #5BCEF5;
+  color: white;
+}
+
+.them {
+  background-color: #E0E0E0;
+  color: black;
 }
