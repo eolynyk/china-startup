@@ -16,11 +16,6 @@ Meteor.publish('cards', function () {
 //  //return Chats.find({initiatorId: me});
 //  return Chats.findOne({_id: cardId});
 //});
-
-Meteor.publish('advisorCards', function() {
-  return Cards.find({userType: "adviser"});
-});
-
 Meteor.publish('investorCards', function() {
   return Cards.find({userType: "investor"});
 });
@@ -29,13 +24,24 @@ Meteor.publish('founderCards', function() {
   return Cards.find({userType: "founder"});
 });
 
+//Meteor.publish('singleChat', function(chatId) {
+//  check(chatId, String);
+//  return Chats.findOne({_id: chatId});
+//});
+
 Meteor.publish('chats', function(me) {
   check(me, String);
-  //return Chats.find({initiatorId: me});
-  return Chats.find({ $or : [{initiatorId: me},{inviteeId: me}]});
+  return Chats.find({$and: [{accepted: true},{$or: [{inviteeId: me},{initiatorId: me}]}]});
 });
 
-Meteor.publish('messages', function () {
+Meteor.publish('messages', function (chat) {
+  check(chat, String);
   //return Messages.find({}, {sort: {submitted: -1}});
-  return Messages.find();
+  return Messages.find({chatId: chat});
+});
+
+Meteor.publish('participants', function (chat) {
+  check(chat, String);
+  //return Messages.find({}, {sort: {submitted: -1}});
+  return Participants.find({chatId: chat});
 });

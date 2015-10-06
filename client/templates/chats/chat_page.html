@@ -1,9 +1,9 @@
 <template name="chatPage">
   <div class="card-page page">
-    {{> chatItem}}
+    <h3>{{them}}</h3>
     <ul class="messages">
       {{#each messages}}
-        {{> messageItem}}
+      {{> messageItem}}
       {{/each}}
     </ul>
     <a href="skype:{{initiatorSkype}}?call&video=true" class="btn btn-primary">Call</a>
@@ -12,18 +12,20 @@
 </template>
 
 <template name="messageItem">
-  <li>
-    <h4>
-      <span class="author">{{name}}</span>
-      <span class="date">on {{submitted}}</span>
-    </h4>
-    <p>{{msg}}</p>
-  </li>
+  <div class="{{whoIs}} msg">
+    <li>
+      <h4>
+        <span class="author">{{participant}}</span>
+      </h4>
+      <span class="date">{{submitted}}</span>
+      <p>{{msg}}</p>
+    </li>
+  </div>
 </template>
 
 <template name="messageSubmit">
   <form name="message" class="message-form form">
-        <textarea name="msg" id="msg" class="form-control" rows="3"></textarea>
+    <textarea name="msg" id="msg" class="form-control" rows="3"></textarea>
     <button type="submit" class="btn btn-primary">Send!</button>
   </form>
 </template>

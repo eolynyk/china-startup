@@ -1,26 +1,33 @@
 Template.chatPage.helpers({
   messages: function() {
-    return Messages.find({chatId: this._id});
+    return Messages.find();
   },
-  //chatId: function() {
-  //  console.log(this._id);
-  //  //var chatId = Chats.findOne({_id: this._id}).chatId.valueOf();
-  //  //return chatId;
-  //}
-  //p2: function() {
-  //  var chat = Chats.findOne({_id: this._id});
-  //  var p2Id = Cards.find({userId: chat.participants.p2.userId});
-  //  console.log(this.participants.p2.userId);
-    //var card = Cards.find({userId: p2Id })
-    //console.log(card);
-  //  return p2Id.author
-  //}
-  //skypeId: function() {
-  //  var skypeId = "echo123";
-  //  //var user = Meteor.user();
-  //  //var skypeId =  user.skypeId;
-  //  return skypeId;
-  //}
+  them: function() {
+    var me = Meteor.userId();
+    //console.log(me);
+    var them = Participants.findOne({userId: {$not: me}});
+    //console.log(them);
+    return them.name;
+  },
+});
+
+Template.messageItem.helpers({
+  participant: function() {
+    var messageUserId= this.userId;
+    var participant = Participants.findOne({userId: messageUserId});
+    return participant.name;
+  },
+  whoIs: function() {
+    var messageUserId= this.userId;
+    var me = Meteor.userId();
+    if (messageUserId === me) {
+      return "me";
+    } else {
+      return "them";
+    }
+  }
+
+
 });
 
 Template.messageSubmit.events({
@@ -31,6 +38,7 @@ Template.messageSubmit.events({
       msg: $msg.val(),
       chatId: template.data._id
     };
+    //console.log(template.data._id);
     var errors = {};
     //if (! comment.body) {
     //  errors.body = "Please write some content";
